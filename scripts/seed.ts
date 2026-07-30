@@ -8,7 +8,7 @@ import { CURRENCIES, type Currency } from '../src/lib/types';
  * sees what it will see against a seeded DB. Re-runnable: every insert keys off a natural key.
  *
  * Prices mirror vpn-miniapp.html one-to-one as minor units pending the open question in tech.md 17
- * (currency and launch prices). 90 days is priced ~30% under three 7-day-rate months.
+ * (currency and launch prices).
  */
 // Outside Vite nothing loads .env; docker passes the values through env_file instead.
 try {
@@ -46,21 +46,21 @@ const PLANS = [
 		name: '7 дней',
 		description: 'Попробовать без обязательств',
 		durationDays: 7,
-		priceMinor: 149,
+		priceMinor: 99,
 		sortOrder: 0
 	},
 	{
 		name: '30 дней',
 		description: 'Обычный выбор',
 		durationDays: 30,
-		priceMinor: 499,
+		priceMinor: 199,
 		sortOrder: 1
 	},
 	{
 		name: '90 дней',
 		description: 'Выгоднее всего',
 		durationDays: 90,
-		priceMinor: 1049,
+		priceMinor: 499,
 		sortOrder: 2
 	}
 ];

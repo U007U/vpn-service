@@ -6,7 +6,7 @@ import { ADMIN_CHAT_ID, FRAME, buyPlan, hydrated, openBuySheet, signIn, withId }
  * Главная, and the receipt that purchase leaves behind.
  *
  * The path a customer actually walks, against the seeded shop: START30 is 30% off with no usage
- * limit, and the 30-day plan is 499 minor units — so the order Stripe is asked to charge must be 350,
+ * limit, and the 30-day plan is 199 minor units — so the order Stripe is asked to charge must be 140,
  * and the webhook that grants access must agree with it. That agreement is the point of the test:
  * `PaymentWebhookService` refuses a payment whose amount does not match the order, so a discount
  * applied in one place and forgotten in another fails here rather than in production.

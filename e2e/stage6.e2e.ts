@@ -27,7 +27,7 @@ const SUBSCRIBER = 701_000_000 + RUN;
 const FREELOADER = 701_100_000 + RUN;
 
 const PLAN_NAME = '30 дней';
-const PLAN_PRICE_MINOR = 499;
+const PLAN_PRICE_MINOR = 199;
 
 /** Shared with FakePayments; it is not a secret, it is a shape (see clients/payments/fake.ts). */
 const FAKE_WEBHOOK_SECRET = 'whsec_fake_dev_secret';

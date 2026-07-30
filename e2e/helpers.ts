@@ -101,9 +101,9 @@ export const hydrated = (page: Page) => expect(page.locator('[data-splash]')).to
  */
 export async function openBuySheet(page: Page) {
 	await hydrated(page);
-	// Купить before a purchase, Продлить after one — both open this same sheet, and both spell the
+	// Выбрать before a purchase, Продлить after one — both open this same sheet, and both spell the
 	// visible word into their accessible name so the name still contains the label (WCAG 2.5.3).
-	await page.getByRole('button', { name: /^(Купить|Продлить) подписку$/ }).click();
+	await page.getByRole('button', { name: /^(Выбрать|Продлить) подписку$/ }).click();
 }
 
 /** One row of the deck. A radio, not a card: the sheet asks once and pays once. */

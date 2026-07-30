@@ -19,7 +19,7 @@ const FAKE_WEBHOOK_SECRET = 'whsec_fake_dev_secret';
 
 /** The seeded 30-day plan. The server prices the order, so this is what must be paid. */
 const PLAN_NAME = '30 дней';
-const PLAN_PRICE_MINOR = 499;
+const PLAN_PRICE_MINOR = 199;
 
 /** Provisioning goes through the worker (2s tick) and the client polls every 3s. */
 const SETTLE = { timeout: 20_000 };
@@ -80,14 +80,14 @@ const postWebhook = (request: APIRequestContext, body: unknown, signature = FAKE
  * Buys a plan and returns the publicId of the order it opened.
  *
  * Opens the deck sheet itself, but only when it is not open already: once it is, its own backdrop
- * sits on top of Купить/Продлить — a second click there would hang waiting for a button a
+ * sits on top of Выбрать/Продлить — a second click there would hang waiting for a button a
  * caller that opened the sheet first (to check the "Продлит доступ до" line, say) cannot reach.
  */
 async function startCheckout(page: Page, planName = PLAN_NAME): Promise<string> {
 	const payButton = page.getByRole('button', { name: `Оплатить тариф ${planName}` });
 
 	if (!(await payButton.isVisible())) {
-		await page.getByRole('button', { name: /^(Купить|Продлить) подписку$/ }).click();
+		await page.getByRole('button', { name: /^(Выбрать|Продлить) подписку$/ }).click();
 	}
 
 	await planOption(page, planName).click();
@@ -213,7 +213,7 @@ test.describe('the webhook is the only door', () => {
 
 		const publicId = await startCheckout(page);
 
-		// The server priced this at 499. Paying a cent must buy nothing.
+		// The server priced this at 199. Paying a cent must buy nothing.
 		const response = await postWebhook(request, paidEvent(publicId, { amountMinor: 1 }));
 		expect(response.status()).toBe(200);
 		expect(await response.json()).toEqual({ outcome: 'unusable' });
