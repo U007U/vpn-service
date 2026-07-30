@@ -5,18 +5,19 @@
 
 ---
 
-## Шаг 0. Проверки перед началом
+## Шаг 0. Проверки перед началом 
 
 ```bash
 ssh root@<IP>
 uname -a          # Ubuntu 20.04+ или Debian 11+
 free -h           # минимум 2 ГБ RAM (лучше 4 ГБ)
 df -h /           # минимум 15 ГБ свободного места
+✅
 ```
 
 Если RAM < 2 ГБ — сервер не потянет. Минимум: 2 vCPU + 2 ГБ RAM + 2 ГБ swap.
-
 ---
+✅
 
 ## Шаг 1. Очистка сервера
 
@@ -41,6 +42,7 @@ systemctl stop x-ui 2>/dev/null || true
 rm -f /etc/systemd/system/x-ui.service 2>/dev/null || true
 systemctl daemon-reload
 ```
+✅
 
 ### 1.2. Удалить Mimo Code
 
@@ -62,6 +64,7 @@ systemctl stop mimo-code 2>/dev/null || true
 rm -f /etc/systemd/system/mimo*.service 2>/dev/null || true
 systemctl daemon-reload
 ```
+✅
 
 ### 1.3. Удалить лишние доккер-контейнеры и образы
 
@@ -76,6 +79,7 @@ docker rmi --force $(docker images -aq) 2>/dev/null || true
 docker volume prune -f
 docker network prune -f
 ```
+✅
 
 ### 1.4. Остановить ненужные сервисы
 
@@ -91,6 +95,7 @@ systemctl list-units --type=service --state=running
 npm uninstall -g node-red 2>/dev/null || true
 npm uninstall -g pm2 2>/dev/null || true
 ```
+✅
 
 ### 1.5. Почистить пользователей
 
@@ -109,6 +114,7 @@ cat /etc/passwd | grep -v nologin | grep -v false
 # Очистить/tmp
 rm -rf /tmp/*
 ```
+✅
 
 ### 1.6. Очистка портов
 
@@ -124,6 +130,7 @@ ss -tlnp
 #   8443/tcp — будет VLESS REALITY
 # Всё остальное — убить.
 ```
+✅
 
 ### 1.7. Фаервол — чистый
 
@@ -139,6 +146,7 @@ ufw allow 443/udp
 ufw allow 8443/tcp
 ufw enable
 ```
+✅
 
 ---
 
